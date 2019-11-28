@@ -1,5 +1,8 @@
 const router = require('express').Router()
+const address = require('./address')
 
-router.get('/user', users)
+// router.get('/user', users)
 
-export default router
+router.use('/address', address)
+
+module.exports = router
