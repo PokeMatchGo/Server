@@ -22,9 +22,7 @@ routes.get('/random',(req,res,next)=>{
         console.log(data.cards[0].imageUrlHiRes)
         pokemon['imageUrl'] = data.cards[1].imageUrlHiRes
         res.status(200).json(pokemon)
-    }).catch(err=>{
-        console.log(err)
-    })
+    }).catch(next)
 })
 
 module.exports = routes
