@@ -3,6 +3,7 @@ const axios = require('axios')
 require('dotenv').config()
 
 routes.get('/random',(req,res,next)=>{
+  // console.log('ini rapid key', process.env.RAPID_KEY);
     let pokemon = {}
     axios({
         method: 'get',

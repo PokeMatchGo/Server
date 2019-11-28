@@ -1,5 +1,5 @@
 function errorHandling(err, req, res, next) {
-    // console.log(err)
+    console.log('ini di err handling', err)
     
     // default error
     const status = err.status || 500
