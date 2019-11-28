@@ -3,10 +3,10 @@ const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
 const errorHandler = require('./middlewares/errorHandler')
-// const routes = require('./routes')
+const routes = require('./routes')
 const app = express()
 const port = process.env.PORT || 3000
-const pokemon = require('./routes/pokemon')
+// const pokemon = require('./routes/pokemon')
 
 require('./config/mongoose')
 app.use(morgan('dev'))

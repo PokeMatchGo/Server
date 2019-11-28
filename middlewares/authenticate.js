@@ -1,4 +1,4 @@
-const User = require('../models/User')
+const User = require('../models/user')
 const { verifyToken } = require('../helpers/jwt')
 
 module.exports = (req, res, next) => {

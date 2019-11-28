@@ -5,4 +5,4 @@ const pokemon = require('./pokemon')
 router.get('/user', user)
 router.use('/pokemon', pokemon)
 
-export default router
+module.exports = router
