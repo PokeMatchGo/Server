@@ -1,5 +1,6 @@
 const routes = require('express').Router()
 const axios = require('axios')
+require('dotenv').config()
 
 routes.get('/random',(req,res,next)=>{
     let pokemon = {}
@@ -7,8 +8,8 @@ routes.get('/random',(req,res,next)=>{
         method: 'get',
         url: 'https://pokemon-go1.p.rapidapi.com/pokemon_stats.json',
         headers:{
-          'x-rapidapi-host' : 'pokemon-go1.p.rapidapi.com',
-          'x-rapidapi-key' : '754fed58femsh983b495aea7e092p16ed9cjsnd63754ca82d6'
+          'x-rapidapi-host' : process.env.RAPID_HOST,
+          'x-rapidapi-key' : process.env.RAPID_KEY
         }
     }).then(({data})=>{
         let randomPoke = Math.floor(Math.random() * data.length); 
