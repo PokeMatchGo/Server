@@ -121,7 +121,14 @@ class ControllerUser {
 
   static getRandomCard(req, res, next) {}
 
-  static fetchAllCards(req, res, next) {}
+  static fetchAllCards(req, res, next) {
+    User
+      .findById(req.loggedUser.id)
+      .then(({ cards }) => {
+        res.status(200).json(cards)
+      })
+      .catch(next)
+  }
 
   static findBattle(req, res, next) {}
 }
