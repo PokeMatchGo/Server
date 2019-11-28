@@ -7,7 +7,7 @@ module.exports = {
         })
         .then(({data})=>{
             res.status(200).json({
-                data,
+                opponent: data.results[0].customer,
                 state : data.results[0].customer.address.state.split(' ').join('%20')
             })
         })

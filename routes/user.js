@@ -13,6 +13,6 @@ router.get('/cards/acquire', authenticate, ControllerUser.acquireRandomCard)
 
 router.get('/cards', authenticate, ControllerUser.fetchAllCards)
 
-router.get('/cards/:id/battle', authenticate, ControllerUser.findBattle)
+router.get('/battle', authenticate, ControllerUser.findBattle)
 
 module.exports = router

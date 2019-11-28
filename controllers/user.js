@@ -149,7 +149,22 @@ class ControllerUser {
   }
 
   static findBattle(req, res, next) {
-    
+    let opponent = {}
+    axios({
+      method: 'get',
+      url: '/address/random'
+    })
+      .then(({ data }) => {
+        opponent = data.opponent
+        return axios({
+          method: 'get',
+          url: '/pokemon/random'
+        })
+      })
+      .then(({ data }) => {
+        res.json({ opponent, card: data })
+      })
+      .catch(next)
   }
 }
 
