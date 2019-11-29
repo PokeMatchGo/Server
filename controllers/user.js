@@ -108,7 +108,6 @@ class ControllerUser {
             id: user.id
           }
           const access_token = generateToken(payload)
-
           res.status(200).json({
             message: 'Successfully logged in!',
             access_token, user
