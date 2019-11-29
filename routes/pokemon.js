@@ -30,8 +30,20 @@ routes.get('/allCards',(req,res,next)=>{
         method : 'get',
         url: 'https://api.pokemontcg.io/v1/cards'
     })
-    .then(cards=>{
-        res.status(200).json(cards)
+    .then(({ data })=>{
+        res.status(200).json(data)
+    })
+    .catch(next)
+})
+
+routes.post('/searchCards',(req,res,next)=>{
+    let { name } = req.body
+    axios({
+        method : 'get',
+        url: `https://api.pokemontcg.io/v1/cards?name=${name}`,
+    })
+    .then(({ data })=>{
+        res.status(200).json(data)
     })
     .catch(next)
 })
