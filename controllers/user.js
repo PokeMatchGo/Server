@@ -155,7 +155,7 @@ class ControllerUser {
       url: '/address/random'
     })
       .then(({ data }) => {
-        opponent = data.opponent
+        opponent = data
         return axios({
           method: 'get',
           url: '/pokemon/random'
