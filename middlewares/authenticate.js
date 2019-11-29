@@ -1,4 +1,4 @@
-const User = require('../models/User')
+const User = require('../models/user')
 const { verifyToken } = require('../helpers/jwt')
 
 module.exports = (req, res, next) => {
@@ -14,10 +14,8 @@ module.exports = (req, res, next) => {
       }
     }
 
-    const { payload } = decoded
-
     User
-      .findOne({ email: payload.email })
+      .findOne({ email: decoded.email })
       .then(user => {
         if (!user) {
           throw {
@@ -27,7 +25,7 @@ module.exports = (req, res, next) => {
           }
         }
 
-        req.loggedUser = { id: user._id, email: payload.email }
+        req.loggedUser = { id: user._id, email: decoded.email }
         next()
       })
       .catch(next)

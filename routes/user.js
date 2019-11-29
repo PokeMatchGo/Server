@@ -9,11 +9,10 @@ router.post('/login', ControllerUser.login)
 router.post('/googleSignIn', ControllerUser.googleSignIn)
 
 // VVV ROUTES YG PERLU DIKERJAIN VVV
-
-router.get('/cards/random', authenticate, ControllerUser.getRandomCard)
+router.get('/cards/acquire', authenticate, ControllerUser.acquireRandomCard)
 
 router.get('/cards', authenticate, ControllerUser.fetchAllCards)
 
-router.get('/cards/:id/find-battle', authenticate, ControllerUser.findBattle)
+router.get('/battle', authenticate, ControllerUser.findBattle)
 
 module.exports = router

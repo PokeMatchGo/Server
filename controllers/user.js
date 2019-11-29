@@ -1,6 +1,7 @@
-const User = require('../models/User')
+const User = require('../models/user')
 const { generateToken } = require('../helpers/jwt')
 const { comparePassword } = require('../helpers/bcrypt')
+const axios = require('../config/axios')
 
 class ControllerUser {
   static register(req, res, next) {
@@ -119,7 +120,24 @@ class ControllerUser {
 
   // VVV ROUTES YG PERLU DIKERJAIN VVV
 
-  static getRandomCard(req, res, next) {}
+  static acquireRandomCard(req, res, next) {
+    axios({
+      method: 'get',
+      url: '/pokemon/random'
+    })
+    .then(({ data }) => {
+      return User
+        .findByIdAndUpdate(req.loggedUser.id, {
+          $addToSet: {
+            cards: data
+          }
+        }, { new: true })
+    })
+    .then(user => {
+      res.json(user)
+    })
+    .catch(next)
+  }
 
   static fetchAllCards(req, res, next) {
     User
@@ -130,7 +148,24 @@ class ControllerUser {
       .catch(next)
   }
 
-  static findBattle(req, res, next) {}
+  static findBattle(req, res, next) {
+    let opponent = {}
+    axios({
+      method: 'get',
+      url: '/address/random'
+    })
+      .then(({ data }) => {
+        opponent = data.opponent
+        return axios({
+          method: 'get',
+          url: '/pokemon/random'
+        })
+      })
+      .then(({ data }) => {
+        res.json({ opponent, card: data })
+      })
+      .catch(next)
+  }
 }
 
 module.exports = ControllerUser
